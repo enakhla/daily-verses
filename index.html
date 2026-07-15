@@ -61,15 +61,12 @@
     text-align: center;
     margin-bottom: 28px;
   }
-  header .date {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-  header .subdate {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 4px;
+  .app-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    color: var(--ink);
   }
   .nav {
     display: flex;
@@ -79,7 +76,7 @@
     margin: 18px 0 32px;
     flex-wrap: wrap;
   }
-  .nav button, .nav input {
+  .nav button {
     font-family: inherit;
     font-size: 0.9rem;
     padding: 8px 14px;
@@ -90,8 +87,33 @@
     cursor: pointer;
   }
   .nav button:hover { background: var(--accent-soft); }
-  .nav input[type="date"] { cursor: text; }
   .nav .today-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .date-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    padding: 5px 14px 7px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .date-control input[type="date"] {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--ink);
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: text;
+  }
+  .date-control .subdate {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
 
   .card {
     background: var(--card-bg);
@@ -462,13 +484,15 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="date" id="dateHeading"></div>
-    <div class="subdate" id="dateSub"></div>
+    <div class="app-title">My Daily Verses</div>
   </header>
 
   <div class="nav">
     <button id="prevBtn">&larr; Prev</button>
-    <input type="date" id="datePicker">
+    <div class="date-control">
+      <input type="date" id="datePicker">
+      <span class="subdate" id="dateSub"></span>
+    </div>
     <button class="today-btn" id="todayBtn">Today</button>
     <button id="nextBtn">Next &rarr;</button>
   </div>
@@ -1600,8 +1624,6 @@ function renderVerseText(container, text, terms) {
 }
 
 function render() {
-  document.getElementById("dateHeading").textContent =
-    MONTH_NAMES[current.getMonth()] + " " + current.getDate();
   document.getElementById("dateSub").textContent = DAY_NAMES[current.getDay()];
   document.getElementById("datePicker").value = current.toISOString().slice(0,10);
 
