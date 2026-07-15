@@ -1363,25 +1363,49 @@ const GLOSSARY = {
   "eternal life": "Not simply unending existence, but the specific life of knowing God through Christ, starting now and continuing forever (John 17:3). Today: often pictured as only a future reward, but Scripture treats it as a quality of life available the moment someone trusts Christ.",
   "cross": "In Jesus's day, an instrument of Roman execution reserved for the worst criminals and rebels. To take up your cross meant carrying your own execution beam, a walk with only one destination. Jesus turned that image into the definition of following Him: total, costly, public allegiance. Today: “a cross to bear” has been softened to mean any hardship, but Jesus meant something more specific — dying to self-rule so He can be Lord.",
   "hallowed": "To be treated as holy, set apart, uniquely sacred — not made holy (it already is) but recognized and honored as such by us. Today: the word barely survives in modern English outside this prayer, but its meaning persists in communion tables, wedding vows, and any moment we consciously set the sacred apart from the ordinary.",
+  "spirit": "The third Person of the Trinity: fully God, sent to indwell, empower, and guide believers. At Jesus's baptism the Spirit visibly confirms Him as the Son the Father is well pleased with. Today: not a force or a feeling, but a Person to know — the same Spirit who descended on Jesus is the one who lives in every believer (Romans 8:9).",
+  "son of david": "A messianic title rooted in God's promise that David's throne would last forever (2 Samuel 7:12-13). When the crowds cry it out to Jesus, they aren't just admiring Him, they're identifying Him as the promised King. Today: a reminder that Jesus's kingship wasn't a later add-on to His identity — it was expected, prophesied, and named from the start.",
+  "christ": "Not Jesus's last name, but His title: the Greek translation of the Hebrew “Messiah,” meaning “Anointed One” — the promised King, Priest, and Prophet sent by God. When the high priest asks if Jesus is “the Christ,” he's asking the one question that determines everything. Today: “Jesus Christ” is really a confession, “Jesus is the Anointed One,” every time it's said.",
+  "day of god": "Prophetic shorthand for the moment God sets everything right, judges evil, and remakes creation (also called “the Day of the Lord” in the Old Testament). Peter uses it to describe both an ending and a beginning. Today: not meant to produce anxiety about a deadline, but hope that history is going somewhere, and that somewhere is good.",
+  "glory": "The visible weight of God's presence: not simply brightness, but the tangible evidence that God Himself is near. At the Transfiguration, Jesus's glory isn't put on Him, it's His own glory breaking through what usually stays hidden. Today: “glory” often gets flattened into a synonym for praise, but in Scripture it starts as something you'd see and feel, not just say.",
+  "steadfastness": "Endurance that holds its course under pressure, not by gritting through but by staying anchored to something outside the difficulty itself. Paul lists it alongside faith, love, and patience as something Timothy actually watched him live out. Today: distinct from stubbornness — steadfastness is aimed at faithfulness to Christ, not just refusing to quit.",
+  "commandments": "God's revealed instructions for His people, given not as arbitrary rules but as the terms of a relationship already established by grace (He rescued Israel before He gave the commandments, not after). Today: keeping them is less about earning God's favor and more about staying in step with a God who has already committed Himself to you.",
+  "tabernacle": "The portable tent where God's presence dwelled among Israel in the wilderness, the forerunner to the temple. That Joshua lingered there while Moses left shows an appetite for God's presence beyond what was required. Today: since Christ, God's dwelling place is no longer a tent but His people themselves (1 Corinthians 6:19) — the same appetite Joshua had is now an invitation, not a restriction.",
+  "faith": "Not a feeling of certainty, but active trust in God that shows up as obedience, even before every question is answered. Paul can command believers to “stand firm in the faith” because faith is something you do, not just something you have. Today: often confused with optimism or wishful thinking, but biblical faith is trust placed in a specific, trustworthy Person, not a general positive outlook.",
+  "law": "God's revealed teaching and instruction, most fully given through Moses — far broader than a list of rules, closer to a way of life laid out by God for His people's good. The psalmist calls those who walk in it “blessed,” not burdened. Today: Christians relate to it through Christ, who fulfilled it (Matthew 5:17), but its portrait of a flourishing life still shapes how we read all of Scripture.",
+  "temptation": "The pull toward sin, whether from our own desires, the world, or the enemy — Jesus teaches us to pray for God to keep us away from it rather than trusting our own strength to resist it once we're in it. Today: a request for God to guard the door, not just help us win the fight once we're already inside the room.",
+  "debts": "Sin pictured as something owed, a debt we cannot repay ourselves. Jesus ties being forgiven this debt directly to forgiving others theirs, in the very next line. Today: “debts” makes forgiveness concrete — not a vague feeling to work up, but the cancellation of something specific and real, extended to others the way it was extended to us.",
+  "resurrection": "Not resuscitation back into the same mortal life, but bodily life raised into a new, imperishable kind of existence, beginning with Christ and promised to everyone united to Him. Paul wants to know its power now, not just receive it later. Today: resurrection isn't only a future event to hope for, it's a present power available to change how we live today.",
 };
 
 // Which words to link inline for a given category + date. "match" is the exact
 // substring to find in that verse's text; "key" is the GLOSSARY entry to show.
 const DAY_TERMS = {
   worship: {
-    "7-15": [{ match: "Hosanna", key: "hosanna" }],
-    "7-16": [{ match: "Son of Man", key: "son of man" }],
+    "7-14": [{ match: "Spirit", key: "spirit" }],
+    "7-15": [{ match: "Hosanna", key: "hosanna" }, { match: "Son of David", key: "son of david" }],
+    "7-16": [{ match: "Christ", key: "christ" }, { match: "Son of Man", key: "son of man" }],
     "7-18": [{ match: "grace", key: "grace" }],
   },
   meditation: {
-    "7-14": [{ match: "godliness", key: "godliness" }],
-    "7-18": [{ match: "manna", key: "manna" }],
+    "7-14": [{ match: "godliness", key: "godliness" }, { match: "the day of God", key: "day of god", label: "the day of God" }],
+    "7-15": [{ match: "glory", key: "glory" }],
+    "7-16": [{ match: "steadfastness", key: "steadfastness" }],
+    "7-18": [{ match: "manna", key: "manna" }, { match: "commandments", key: "commandments" }],
+    "7-19": [{ match: "tabernacle", key: "tabernacle" }],
     "7-20": [{ match: "take his cross", key: "cross", label: "cross" }],
   },
   prayer: {
-    "7-18": [{ match: "Hallowed", key: "hallowed" }, { match: "Your kingdom come", key: "kingdom of god", label: "kingdom" }],
+    "7-15": [{ match: "faith", key: "faith" }],
+    "7-16": [{ match: "law", key: "law" }],
+    "7-18": [
+      { match: "Hallowed", key: "hallowed" },
+      { match: "Your kingdom come", key: "kingdom of god", label: "kingdom" },
+      { match: "temptation", key: "temptation" },
+      { match: "debts", key: "debts" },
+    ],
     "7-19": [{ match: "everlasting life", key: "eternal life", label: "everlasting life" }],
-    "7-20": [{ match: "righteousness", key: "righteousness" }],
+    "7-20": [{ match: "righteousness", key: "righteousness" }, { match: "resurrection", key: "resurrection" }],
   },
 };
 
