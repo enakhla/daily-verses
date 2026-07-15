@@ -424,6 +424,37 @@
     color: var(--muted);
     font-style: italic;
   }
+  .ask-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-top: 20px;
+  }
+  .ask-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .ask-hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 14px;
+    line-height: 1.5;
+  }
+  .ask-box textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--ink);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .ask-box .modal-actions { margin-top: 12px; justify-content: flex-end; }
 </style>
 <script>
 (function() {
@@ -509,6 +540,15 @@
   <div id="cards"></div>
 
   <div class="study-panel" id="studyPanel"></div>
+
+  <div class="ask-box">
+    <div class="ask-title">&#127891; Ask Dr. Theo</div>
+    <p class="ask-hint">Have a deeper or wider question about today's verses, or anything else on your mind? Type it below — Dr. Theo will hand it to Claude for you.</p>
+    <textarea id="askInput" rows="3" placeholder="e.g. Why does Jesus call Himself the Son of Man instead of just saying He's God?"></textarea>
+    <div class="modal-actions">
+      <button class="save-btn" id="askSubmit">Ask Dr. Theo</button>
+    </div>
+  </div>
 
   <footer>Worship &middot; Meditation &middot; Prayer &mdash; A Daily Rhythm</footer>
 </div>
@@ -1854,6 +1894,25 @@ wordOverlay.addEventListener("click", (e) => {
 
 document.getElementById("shareBtn").addEventListener("click", () => {
   openCopyModal(window.location.href, { title: "Share this link", destination: "into a text or email" });
+});
+
+document.getElementById("askSubmit").addEventListener("click", () => {
+  const question = document.getElementById("askInput").value.trim();
+  if (!question) {
+    alert("Type a question first.");
+    return;
+  }
+  const key = toKey(current);
+  const dateLabel = MONTH_NAMES[current.getMonth()] + " " + current.getDate();
+  const refs = [];
+  for (const cat of ["worship", "meditation", "prayer"]) {
+    const entries = INDEX[cat][key];
+    if (entries && entries.length) refs.push(LABELS[cat] + ": " + entries[0].ref);
+  }
+  const context = refs.length ? "Today's verses (" + dateLabel + ") — " + refs.join(", ") + "\n\n" : "";
+  const text = context + "Question: " + question;
+  document.getElementById("askInput").value = "";
+  openCopyModal(text, { title: "Ask Dr. Theo", destination: "into the chat with Claude" });
 });
 
 document.getElementById("addVerseBtn").addEventListener("click", openModal);
