@@ -462,6 +462,23 @@
     box-sizing: border-box;
   }
   .ask-box .modal-actions { margin-top: 12px; justify-content: flex-end; }
+  .define-btn {
+    display: none;
+    position: absolute;
+    z-index: 2000;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transform: translateX(-50%);
+    user-select: none;
+    -webkit-user-select: none;
+  }
 </style>
 <script>
 (function() {
@@ -550,7 +567,6 @@
 
   <div class="ask-box">
     <div class="ask-title">&#127891; Ask Dr. Theo</div>
-    <p class="ask-hint">Have a deeper or wider question about today's verses, or anything else on your mind? Type it below — Dr. Theo will hand it to Claude for you.</p>
     <textarea id="askInput" rows="3" placeholder="e.g. Why does Jesus call Himself the Son of Man instead of just saying He's God?"></textarea>
     <div class="modal-actions">
       <button class="save-btn" id="askSubmit">Ask Dr. Theo</button>
@@ -617,10 +633,13 @@
     </div>
     <div class="word-definition" id="wordDefinition"></div>
     <div class="modal-actions">
+      <button class="cancel-btn" id="wordModalAsk" style="display:none;">Ask Dr. Theo</button>
       <button class="save-btn" id="wordModalDone">Done</button>
     </div>
   </div>
 </div>
+
+<div class="define-btn" id="defineFloatBtn">Define</div>
 
 <script>
 // ---- Verse data -----------------------------------------------------------
@@ -1885,9 +1904,20 @@ copyOverlay.addEventListener("click", (e) => {
 });
 
 const wordOverlay = document.getElementById("wordOverlay");
-function openWordModal(term, definition) {
+const wordModalAsk = document.getElementById("wordModalAsk");
+let pendingAskQuestion = null;
+
+function openWordModal(term, definition, opts) {
+  opts = opts || {};
   document.getElementById("wordTerm").textContent = term.charAt(0).toUpperCase() + term.slice(1);
   document.getElementById("wordDefinition").textContent = definition || "No definition written for this word yet.";
+  if (opts.askQuestion) {
+    pendingAskQuestion = opts.askQuestion;
+    wordModalAsk.style.display = "";
+  } else {
+    pendingAskQuestion = null;
+    wordModalAsk.style.display = "none";
+  }
   wordOverlay.classList.add("show");
 }
 function closeWordModal() {
@@ -1898,9 +1928,95 @@ document.getElementById("wordModalDone").addEventListener("click", closeWordModa
 wordOverlay.addEventListener("click", (e) => {
   if (e.target === wordOverlay) closeWordModal();
 });
+wordModalAsk.addEventListener("click", () => {
+  closeWordModal();
+  if (pendingAskQuestion) askDrTheo(pendingAskQuestion);
+});
 
 document.getElementById("shareBtn").addEventListener("click", () => {
   openCopyModal(window.location.href, { title: "Share this link", destination: "into a text or email" });
+});
+
+// ---- Select any word or phrase to look it up in the glossary ---------------
+
+function normalizeForLookup(s) {
+  return s.trim().toLowerCase().replace(/[.,!?;:"“”‘’]/g, "").replace(/\s+/g, " ");
+}
+
+function findGlossaryMatch(selectedText) {
+  const norm = normalizeForLookup(selectedText);
+  if (!norm) return null;
+  if (GLOSSARY[norm]) return norm;
+  const singular = norm.replace(/s$/, "");
+  if (GLOSSARY[singular]) return singular;
+  return null;
+}
+
+function findSourceRef(node) {
+  const el = node.nodeType === 1 ? node : node.parentElement;
+  const card = el && el.closest(".card, .study-row");
+  if (!card) return null;
+  const label = card.querySelector(".label, .study-label");
+  const ref = card.querySelector(".verse-ref, .study-ref");
+  if (!label || !ref) return null;
+  return label.textContent + " " + ref.textContent;
+}
+
+function askDrTheo(question) {
+  document.getElementById("askInput").value = question;
+  document.getElementById("askSubmit").click();
+}
+
+const defineBtn = document.getElementById("defineFloatBtn");
+let currentSelectionText = "";
+let currentSelectionSource = null;
+
+function isInsideLookupArea(node) {
+  const el = node && (node.nodeType === 1 ? node : node.parentElement);
+  return !!(el && el.closest(".verse-text, .study-explanation"));
+}
+
+function updateDefineButton() {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
+    defineBtn.style.display = "none";
+    return;
+  }
+  const text = sel.toString().trim();
+  if (!text || text.length > 60 || !isInsideLookupArea(sel.anchorNode)) {
+    defineBtn.style.display = "none";
+    return;
+  }
+  currentSelectionText = text;
+  currentSelectionSource = findSourceRef(sel.anchorNode);
+  const range = sel.getRangeAt(0);
+  const rect = range.getBoundingClientRect();
+  defineBtn.style.left = (rect.left + rect.width / 2 + window.scrollX) + "px";
+  defineBtn.style.top = (rect.top + window.scrollY - 44) + "px";
+  defineBtn.style.display = "block";
+}
+
+let selectionTimer;
+document.addEventListener("selectionchange", () => {
+  clearTimeout(selectionTimer);
+  selectionTimer = setTimeout(updateDefineButton, 150);
+});
+
+defineBtn.addEventListener("mousedown", (e) => e.preventDefault());
+defineBtn.addEventListener("click", () => {
+  const text = currentSelectionText;
+  const source = currentSelectionSource;
+  defineBtn.style.display = "none";
+  window.getSelection().removeAllRanges();
+  const key = findGlossaryMatch(text);
+  if (key) {
+    openWordModal(text, GLOSSARY[key]);
+  } else {
+    const question = source
+      ? "What does “" + text + "” mean in " + source + "?"
+      : "What does “" + text + "” mean here?";
+    openWordModal(text, "No definition written yet for this — tap “Ask Dr. Theo” to get a real answer from Claude.", { askQuestion: question });
+  }
 });
 
 document.getElementById("askSubmit").addEventListener("click", () => {
