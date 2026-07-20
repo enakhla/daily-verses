@@ -3197,10 +3197,16 @@ function renderVerseText(container, text, terms) {
   let pos = 0;
   for (const f of clean) {
     if (f.start > pos) container.appendChild(document.createTextNode(text.slice(pos, f.start)));
-    const btn = document.createElement("button");
+    const btn = document.createElement("span");
     btn.className = "gloss-word";
+    btn.setAttribute("role", "button");
+    btn.setAttribute("tabindex", "0");
     btn.textContent = text.slice(f.start, f.end);
-    btn.addEventListener("click", () => openWordModal(f.term.label || f.term.match, GLOSSARY[f.term.key]));
+    const activate = () => openWordModal(f.term.label || f.term.match, GLOSSARY[f.term.key]);
+    btn.addEventListener("click", activate);
+    btn.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
+    });
     container.appendChild(btn);
     pos = f.end;
   }
