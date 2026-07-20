@@ -3454,6 +3454,9 @@ const fMonth = document.getElementById("fMonth");
 const fDay = document.getElementById("fDay");
 const fRef = document.getElementById("fRef");
 const fText = document.getElementById("fText");
+fText.addEventListener("paste", () => {
+  setTimeout(() => { fText.scrollTop = 0; fText.setSelectionRange(0, 0); }, 0);
+});
 
 MONTH_NAMES.forEach((name, i) => {
   const opt = document.createElement("option");
