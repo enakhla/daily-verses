@@ -470,6 +470,11 @@
     color: var(--muted);
     font-style: italic;
   }
+  .toggle-chevron {
+    color: var(--accent);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
   .define-bar {
     display: none;
     position: fixed;
@@ -598,6 +603,8 @@
   <div id="cards"></div>
 
   <div class="study-panel" id="studyPanel"></div>
+
+  <div class="study-panel" id="reflectionPanel"></div>
 
   <footer>Worship &middot; Meditation &middot; Prayer &mdash; A Daily Rhythm</footer>
 </div>
@@ -3214,6 +3221,8 @@ const DAY_TERMS = {
   },
 };
 
+const REFLECTIONS = { worship: {}, meditation: {}, prayer: {} };
+
 const LABELS = { prayer: "Prayer", meditation: "Meditation", worship: "Worship" };
 
 const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -3449,10 +3458,13 @@ function render() {
   }
 
   renderStudyPanel(key);
+  renderReflectionPanel(key);
 }
 
-function renderStudyPanel(key) {
-  const panel = document.getElementById("studyPanel");
+const CHEVRON_SVG = '<svg class="toggle-chevron" viewBox="0 0 20 20" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function renderCollapsiblePanel(panelId, key, { icon, title, getContent, emptyText }) {
+  const panel = document.getElementById(panelId);
   panel.innerHTML = "";
 
   const rows = [];
@@ -3470,7 +3482,9 @@ function renderStudyPanel(key) {
 
   const toggle = document.createElement("button");
   toggle.className = "study-toggle";
-  toggle.innerHTML = "<span>\u{1F4D6} Study Today’s Verses</span><span>" + (wasOpen ? "▲" : "▼") + "</span>";
+  toggle.innerHTML = "<span>" + icon + " " + title + "</span><span class=\"chevron-wrap\">" + CHEVRON_SVG + "</span>";
+  const chevron = toggle.querySelector(".toggle-chevron");
+  if (wasOpen) chevron.style.transform = "rotate(180deg)";
 
   const body = document.createElement("div");
   body.className = "study-body" + (wasOpen ? " open" : "");
@@ -3489,16 +3503,16 @@ function renderStudyPanel(key) {
     row.appendChild(label);
     row.appendChild(refEl);
 
-    const explanation = EXPLANATIONS[cat] && EXPLANATIONS[cat][key];
-    if (explanation) {
+    const content = getContent(cat, key);
+    if (content) {
       const exp = document.createElement("div");
       exp.className = "study-explanation";
-      exp.textContent = explanation;
+      exp.textContent = content;
       row.appendChild(exp);
     } else {
       const note = document.createElement("div");
       note.className = "study-unavailable";
-      note.textContent = "Explanation for this one is coming — verses are being written in order, day by day.";
+      note.textContent = emptyText;
       row.appendChild(note);
     }
     body.appendChild(row);
@@ -3508,11 +3522,29 @@ function renderStudyPanel(key) {
     const nowOpen = !body.classList.contains("open");
     body.classList.toggle("open", nowOpen);
     panel.dataset.open = nowOpen ? "true" : "false";
-    toggle.querySelector("span:last-child").textContent = nowOpen ? "▲" : "▼";
+    toggle.querySelector(".toggle-chevron").style.transform = nowOpen ? "rotate(180deg)" : "rotate(0deg)";
   });
 
   panel.appendChild(toggle);
   panel.appendChild(body);
+}
+
+function renderStudyPanel(key) {
+  renderCollapsiblePanel("studyPanel", key, {
+    icon: "\u{1F4D6}",
+    title: "Study Today’s Verses",
+    getContent: (cat, k) => EXPLANATIONS[cat] && EXPLANATIONS[cat][k],
+    emptyText: "Explanation for this one is coming — verses are being written in order, day by day.",
+  });
+}
+
+function renderReflectionPanel(key) {
+  renderCollapsiblePanel("reflectionPanel", key, {
+    icon: "\u{1FA9E}",
+    title: "Reflect on Today’s Verses",
+    getContent: (cat, k) => REFLECTIONS[cat] && REFLECTIONS[cat][k],
+    emptyText: "A reflection question for this one is coming — being added day by day.",
+  });
 }
 
 const themeToggleBtn = document.getElementById("themeToggle");
