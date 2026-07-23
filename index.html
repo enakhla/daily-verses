@@ -103,8 +103,8 @@
     padding-top: 12px;
   }
   .app-logo {
-    max-width: 190px;
-    width: 48%;
+    max-width: 250px;
+    width: 62%;
     height: auto;
   }
   .app-version {
@@ -122,13 +122,14 @@
   }
   .devotional-title {
     font-family: "Lora", Georgia, serif;
-    font-style: italic;
     font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--accent);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
     margin: 0 0 2px;
     text-align: center;
   }
+  .devotional-title .accent { color: var(--accent); font-weight: 700; }
   .cycle-svg {
     width: 100%;
     max-width: 210px;
@@ -136,9 +137,10 @@
   }
   .cycle-label {
     font-family: "Lora", Georgia, serif;
-    font-weight: 600;
-    font-size: 12px;
-    fill: var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    fill: var(--accent);
   }
   .nav {
     display: flex;
@@ -150,8 +152,8 @@
   }
   .icon-btn {
     font-family: inherit;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border-radius: 50%;
     border: 1px solid var(--accent-soft);
@@ -344,10 +346,14 @@
     font-family: inherit;
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 10px 20px;
+    height: 44px;
+    padding: 0 20px;
     border-radius: 999px;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(138,90,59,0.1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .add-btn {
     border: 1px solid var(--accent);
@@ -661,7 +667,7 @@
     </header>
 
     <div class="devotional-cycle">
-      <p class="devotional-title">&#127793; Inductive Daily Devotional &#127793;</p>
+      <p class="devotional-title">Inductive <span class="accent">Daily</span> Devotional</p>
       <svg viewBox="0 0 300 300" class="cycle-svg" role="img" aria-label="Observe, Interpret, Apply — the inductive Bible study cycle">
         <defs>
           <marker id="cycleArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
@@ -706,12 +712,12 @@
         <button class="today-btn" id="todayBtn">Today</button>
       </div>
       <button id="nextBtn" class="icon-btn" aria-label="Next day" title="Next day">&rarr;</button>
-      <button id="themeToggle" class="icon-btn theme-toggle" aria-label="Switch between light and dark mode" title="Switch between light and dark mode">&#127769;</button>
     </div>
   </div>
 
   <div class="addRow">
     <button id="searchBtn" class="share-btn">&#128269; Search</button>
+    <button id="themeToggle" class="icon-btn theme-toggle" aria-label="Switch between light and dark mode" title="Switch between light and dark mode">&#127769;</button>
     <button id="shareBtn" class="share-btn">&#8599; Share</button>
   </div>
 
