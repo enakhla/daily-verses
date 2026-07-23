@@ -4912,7 +4912,19 @@ wordOverlay.addEventListener("click", (e) => {
   if (e.target === wordOverlay) closeWordModal();
 });
 
-document.getElementById("shareBtn").addEventListener("click", () => {
+document.getElementById("shareBtn").addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "My Daily Verses",
+        text: "My Daily Verses — a daily rhythm of Worship, Meditation, and Prayer.",
+        url: window.location.href
+      });
+      return;
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+    }
+  }
   openCopyModal(window.location.href, { title: "Share this link", destination: "into a text or email", showInstall: true });
 });
 
