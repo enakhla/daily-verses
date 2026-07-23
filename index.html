@@ -22,6 +22,12 @@
 <meta name="apple-mobile-web-app-title" content="Daily Verses">
 <meta name="theme-color" content="#faf6ee" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1b1712" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="icons/icon-167.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
 <style>
 @font-face {
   font-family: "Lora";
@@ -653,6 +659,7 @@
     </div>
     <p class="copy-hint" id="copyHint">Paste this into the chat with Claude to save these verses everywhere.</p>
     <textarea id="copyText" rows="10" readonly></textarea>
+    <button class="link-btn" id="installFromShareBtn" style="display:none;">&#8595; Install this app on your device &rarr;</button>
     <div class="modal-actions">
       <button class="save-btn" id="copyModalDone">Done</button>
     </div>
@@ -679,6 +686,19 @@
     <div class="word-definition" id="wordDefinition"></div>
     <div class="modal-actions">
       <button class="save-btn" id="wordModalDone">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="installOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <span>Install My Daily Verses</span>
+      <button class="modal-close" id="installModalClose">&times;</button>
+    </div>
+    <div class="word-definition" id="installInstructions"></div>
+    <div class="modal-actions">
+      <button class="save-btn" id="installModalDone">Done</button>
     </div>
   </div>
 </div>
@@ -2852,6 +2872,7 @@ const GLOSSARY = {
   "salt": "Used by Jesus as an image for believers' preserving, flavor-giving presence in the world, you are the salt of the earth (Matthew 5:13), an influence that only works through actual contact with what it's meant to affect. This image assumes believers are meant to be genuinely mixed into ordinary life, not kept separate from it, salt does nothing sealed away in the shaker.",
   "bread": "Basic, sustaining food, and, applied to Jesus, the ultimate source of spiritual sustenance, I am the bread of life (John 6:35), pointing back to the manna God provided in the wilderness. Calling Jesus \"bread\" claims He is as essential to spiritual life as daily food is to physical life, not a luxury but a genuine, ongoing necessity.",
   "water": "Essential for physical life, and used repeatedly as an image for spiritual life and refreshment only Christ can supply, living water, welling up to eternal life (John 4:14), as well as for the Spirit poured out on believers. Water imagery works precisely because it names something absolutely necessary, not optional, exactly how Scripture frames our need for the life only Christ supplies.",
+  "water (trial)": "Sometimes water pictures not refreshment but danger to be passed through, floodwaters and rivers a person must cross rather than drink, echoing Israel's crossing of the Red Sea and the Jordan. Isaiah pairs it with fire, another force that could destroy, and promises God's own presence in both, not rescue from having to go through them at all (Isaiah 43:2). Water here isn't the gift itself, it's the trial God walks a person through rather than around.",
   "branch": "A shoot growing out of a vine or tree, dependent entirely on the root and stem for life and fruitfulness, an image Jesus applies directly to believers' dependence on Him (John 15:5) and prophets apply to the coming Messiah, a Branch from Jesse's root (Isaiah 11:1). A branch cut off from its source withers quickly, exactly the warning behind Jesus's use of this image for a life disconnected from Him.",
   "firstfruits": "The first and best portion of a harvest, offered to God ahead of the rest as an act of trust that more would follow, applied by Paul to Christ's resurrection as the first installment guaranteeing a full harvest of resurrection still to come for all believers (1 Corinthians 15:20). Calling Christ's resurrection \"firstfruits\" means it's not a solitary miracle but the guarantee of what's still coming for everyone united to Him.",
   "firstborn": "The eldest child, who under ancient custom received a double inheritance and special honor, applied to Christ as the firstborn over all creation (supreme in rank, not created, Colossians 1:15) and firstborn from the dead (first to rise, guaranteeing others will follow, Colossians 1:18). This title claims both supreme rank and the position of leading many others into the same resurrection He experienced first.",
@@ -3347,7 +3368,7 @@ const DAY_TERMS = {
     "2-17": [{ match: "crucified", key: "crucified with Christ" }, { match: "Christ", key: "christ" }, { match: "flesh", key: "flesh" }],
     "2-18": [{ match: "salvation", key: "salvation" }, { match: "righteous", key: "righteous" }, { match: "blessed", key: "blessed" }],
     "2-19": [{ match: "love", key: "love" }, { match: "Father", key: "father" }],
-    "2-20": [{ match: "wisdom", key: "wisdom" }, { match: "understanding", key: "understanding" }, { match: "believe", key: "believe" }],
+    "2-20": [{ match: "wisdom", key: "wisdom (of this age)" }, { match: "understanding", key: "understanding" }, { match: "believe", key: "believe" }],
     "2-21": [{ match: "Spirit", key: "spirit" }, { match: "dwell", key: "dwell" }, { match: "holy", key: "holy" }],
     "2-22": [{ match: "mystery", key: "mystery" }],
     "2-23": [{ match: "heart", key: "heart" }, { match: "spirit", key: "spirit (human)" }, { match: "flesh", key: "flesh" }],
@@ -3513,11 +3534,11 @@ const DAY_TERMS = {
     "8-21": [{ match: "seek", key: "seek" }, { match: "unsearchable", key: "unsearchable" }, { match: "hope", key: "hope" }],
     "8-22": [{ match: "speak", key: "speak" }, { match: "Christ", key: "christ" }],
     "8-23": [{ match: "riches", key: "riches" }, { match: "glory", key: "glory" }, { match: "Christ", key: "christ" }],
-    "8-24": [{ match: "truth", key: "truth" }, { match: "walk", key: "walk (physical)" }, { match: "darkness", key: "darkness" }],
+    "8-24": [{ match: "truth", key: "truth" }, { match: "walk", key: "walk (physical)" }, { match: "darkness", key: "darkness (created)" }],
     "8-25": [{ match: "dwell", key: "dwell" }, { match: "place", key: "place" }, { match: "angels", key: "angels" }],
     "8-26": [{ match: "kingdom of God", key: "kingdom of god" }, { match: "covenant", key: "covenant" }, { match: "Son of Man", key: "son of man" }],
     "8-27": [{ match: "Grace", key: "grace" }, { match: "Father", key: "father" }, { match: "Christ", key: "christ" }],
-    "8-28": [{ match: "redeem", key: "redeem" }, { match: "called", key: "called" }, { match: "water", key: "water" }],
+    "8-28": [{ match: "redeem", key: "redeem" }, { match: "called", key: "called" }, { match: "water", key: "water (trial)" }],
     "8-29": [{ match: "old age", key: "old age" }],
     "8-30": [{ match: "righteousness", key: "righteousness" }, { match: "salvation", key: "salvation" }, { match: "place", key: "place" }],
     "8-31": [{ match: "Redeem", key: "redeem" }, { match: "commandments", key: "commandments" }, { match: "righteousness", key: "righteousness" }],
@@ -4693,6 +4714,7 @@ function openCopyModal(text, opts) {
   } else {
     copyHint.textContent = "The text is selected below — copy it manually and paste it " + destination + ".";
   }
+  installFromShareBtn.style.display = (opts.showInstall && !isStandaloneDisplay() && !installFromShareBtn.dataset.installed) ? "" : "none";
 }
 function closeCopyModal() {
   copyOverlay.classList.remove("show");
@@ -4720,8 +4742,72 @@ wordOverlay.addEventListener("click", (e) => {
 });
 
 document.getElementById("shareBtn").addEventListener("click", () => {
-  openCopyModal(window.location.href, { title: "Share this link", destination: "into a text or email" });
+  openCopyModal(window.location.href, { title: "Share this link", destination: "into a text or email", showInstall: true });
 });
+
+// ---- Install as an app (offered from the Share panel) ------------------
+
+const installFromShareBtn = document.getElementById("installFromShareBtn");
+const installOverlay = document.getElementById("installOverlay");
+let deferredInstallPrompt = null;
+
+function isIOSDevice() {
+  return /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()) && !window.MSStream;
+}
+function isAndroidDevice() {
+  return /android/.test(navigator.userAgent.toLowerCase());
+}
+function isStandaloneDisplay() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function openInstallModal() {
+  const el = document.getElementById("installInstructions");
+  if (isIOSDevice()) {
+    el.innerHTML = "Tap the <strong>Share</strong> button (the square with an arrow pointing up) in Safari&rsquo;s toolbar, then scroll down and tap <strong>&ldquo;Add to Home Screen.&rdquo;</strong> My Daily Verses will appear on your Home Screen like any other app.";
+  } else if (isAndroidDevice()) {
+    el.innerHTML = "Tap your browser&rsquo;s menu (usually three dots in the corner), then choose <strong>&ldquo;Install app&rdquo;</strong> or <strong>&ldquo;Add to Home screen.&rdquo;</strong>";
+  } else {
+    el.innerHTML = "Look for an install icon in your browser&rsquo;s address bar, or open your browser&rsquo;s menu and choose <strong>&ldquo;Install My Daily Verses&hellip;&rdquo;</strong>";
+  }
+  installOverlay.classList.add("show");
+}
+function closeInstallModal() {
+  installOverlay.classList.remove("show");
+}
+document.getElementById("installModalClose").addEventListener("click", closeInstallModal);
+document.getElementById("installModalDone").addEventListener("click", closeInstallModal);
+installOverlay.addEventListener("click", (e) => {
+  if (e.target === installOverlay) closeInstallModal();
+});
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+installFromShareBtn.addEventListener("click", async () => {
+  closeCopyModal();
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+  } else {
+    openInstallModal();
+  }
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  installFromShareBtn.dataset.installed = "1";
+  installFromShareBtn.style.display = "none";
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").catch(() => {});
+  });
+}
 
 // ---- Select any word or phrase to look it up in the glossary ---------------
 
