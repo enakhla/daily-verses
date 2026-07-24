@@ -111,8 +111,8 @@
     padding-top: 12px;
   }
   .app-logo {
-    max-width: 250px;
-    width: 62%;
+    max-width: 280px;
+    width: 70%;
     height: auto;
     filter: drop-shadow(0 6px 10px rgba(138,90,59,0.28)) drop-shadow(0 2px 4px rgba(138,90,59,0.18));
   }
@@ -141,7 +141,7 @@
   .devotional-title .accent { color: var(--accent); font-weight: 700; }
   .cycle-svg {
     width: 100%;
-    max-width: 210px;
+    max-width: 190px;
     height: auto;
   }
   .cycle-label {
@@ -701,6 +701,15 @@
             <feDropShadow dx="3" dy="3" stdDeviation="3" flood-color="var(--neu-dark)"/>
             <feDropShadow dx="-2" dy="-2" stdDeviation="2.5" flood-color="var(--neu-light)"/>
           </filter>
+          <filter id="neuPressed" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="-2" dy="-2" stdDeviation="3" flood-color="var(--neu-dark)"/>
+            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="var(--neu-light)" flood-opacity="0.4"/>
+          </filter>
+          <radialGradient id="nodeShine" cx="35%" cy="28%" r="65%">
+            <stop offset="0%" stop-color="white" stop-opacity="0.22"/>
+            <stop offset="60%" stop-color="white" stop-opacity="0"/>
+            <stop offset="100%" stop-color="black" stop-opacity="0.09"/>
+          </radialGradient>
         </defs>
         <g fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity="0.85">
           <path d="M 168,55 Q 280,75 250,178" marker-end="url(#cycleArrow)"/>
