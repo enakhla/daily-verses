@@ -151,6 +151,10 @@
     letter-spacing: 0.02em;
     fill: var(--accent);
   }
+  .cycle-node { cursor: pointer; }
+  .cycle-node .node-bg { transition: filter 0.15s; }
+  .cycle-node:active .node-bg { filter: url(#neuPressed) !important; }
+  .cycle-node:focus-visible .node-bg { stroke: var(--accent); stroke-width: 2.5; }
   .nav {
     display: flex;
     align-items: center;
@@ -314,6 +318,19 @@
     color: var(--muted);
     font-size: 0.82rem;
     margin-top: 40px;
+  }
+  .footer-note {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .footer-note .signature {
+    display: block;
+    margin-top: 4px;
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
   }
   .progress {
     display: flex;
@@ -716,20 +733,27 @@
           <path d="M 228,222 Q 150,300 78,222" marker-end="url(#cycleArrow)"/>
           <path d="M 55,178 Q 20,75 132,55" marker-end="url(#cycleArrow)"/>
         </g>
-        <g>
-          <circle cx="150" cy="42" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
-          <g transform="translate(150,42)" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g id="cycleObserve" class="cycle-node" role="button" tabindex="0" aria-label="Jump to Bible passages">
+          <circle class="node-bg" cx="150" cy="42" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
+          <circle cx="150" cy="42" r="34" fill="url(#nodeShine)" pointer-events="none"/>
+          <g transform="translate(150,42)" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" pointer-events="none">
             <circle cx="-3" cy="-3" r="8"/>
             <line x1="3" y1="3" x2="10" y2="10"/>
           </g>
-          <circle cx="245" cy="212" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
-          <g transform="translate(245,212)" stroke="var(--sage)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        </g>
+        <g id="cycleInterpret" class="cycle-node" role="button" tabindex="0" aria-label="Open Interpretation panel">
+          <circle class="node-bg" cx="245" cy="212" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
+          <circle cx="245" cy="212" r="34" fill="url(#nodeShine)" pointer-events="none"/>
+          <g transform="translate(245,212)" stroke="var(--sage)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" pointer-events="none">
             <path d="M -8,-4 a 8,8 0 1 1 16,0 c 0,4 -2.5,6 -3.5,9 h -9 c -1,-3 -3.5,-5 -3.5,-9 Z"/>
             <line x1="-3.5" y1="9" x2="3.5" y2="9"/>
             <line x1="-2.5" y1="12.5" x2="2.5" y2="12.5"/>
           </g>
-          <circle cx="55" cy="212" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
-          <g transform="translate(55,212)" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        </g>
+        <g id="cycleApply" class="cycle-node" role="button" tabindex="0" aria-label="Open Application panel">
+          <circle class="node-bg" cx="55" cy="212" r="34" fill="var(--bg)" filter="url(#neuShadow)"/>
+          <circle cx="55" cy="212" r="34" fill="url(#nodeShine)" pointer-events="none"/>
+          <g transform="translate(55,212)" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" pointer-events="none">
             <path d="M0,9.5 L-1.5,8.1 C-6.8,3.3 -10.3,0.1 -10.3,-3.8 C-10.3,-7 -7.8,-9.5 -4.6,-9.5 C-2.8,-9.5 -1.1,-8.7 0,-7.3 C1.1,-8.7 2.8,-9.5 4.6,-9.5 C7.8,-9.5 10.3,-7 10.3,-3.8 C10.3,0.1 6.8,3.3 1.5,8.1 Z"/>
             <line x1="0" y1="-3" x2="0" y2="4"/>
             <line x1="-3" y1="0.5" x2="3" y2="0.5"/>
@@ -771,6 +795,7 @@
   <div class="study-panel" id="reflectionPanel"></div>
 
   <footer>Worship &middot; Meditation &middot; Prayer &mdash; A Daily Rhythm</footer>
+  <p class="footer-note">Thank you for using My Daily Verses.<br>May God's Word shape your heart each day.<span class="signature">&mdash; Edward Nakhla</span></p>
 </div>
 
 <div class="modal-overlay" id="modalOverlay">
@@ -5176,6 +5201,46 @@ mergePending();
 render();
 renderProgress();
 renderPendingBar();
+
+// Cycle node navigation
+function pressCycleNode(nodeEl) {
+  const bg = nodeEl.querySelector('.node-bg');
+  bg.setAttribute('filter', 'url(#neuPressed)');
+  setTimeout(() => bg.setAttribute('filter', 'url(#neuShadow)'), 220);
+}
+
+function openPanelAndScroll(panelId) {
+  const panel = document.getElementById(panelId);
+  if (!panel) return;
+  const body = panel.querySelector('.study-body');
+  const isOpen = body && body.classList.contains('open');
+  if (!isOpen && body) panel.querySelector('.study-toggle').click();
+  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), isOpen ? 0 : 60);
+}
+
+document.getElementById('cycleObserve').addEventListener('click', () => {
+  pressCycleNode(document.getElementById('cycleObserve'));
+  document.getElementById('cards').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+document.getElementById('cycleObserve').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('cycleObserve').click(); }
+});
+
+document.getElementById('cycleInterpret').addEventListener('click', () => {
+  pressCycleNode(document.getElementById('cycleInterpret'));
+  openPanelAndScroll('studyPanel');
+});
+document.getElementById('cycleInterpret').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('cycleInterpret').click(); }
+});
+
+document.getElementById('cycleApply').addEventListener('click', () => {
+  pressCycleNode(document.getElementById('cycleApply'));
+  openPanelAndScroll('reflectionPanel');
+});
+document.getElementById('cycleApply').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('cycleApply').click(); }
+});
 </script>
 </body>
 </html>
