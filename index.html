@@ -711,8 +711,8 @@
       <p class="devotional-title">Inductive <span class="accent">Daily</span> Devotional</p>
       <svg viewBox="0 0 300 300" class="cycle-svg" role="img" aria-label="Observe, Interpret, Apply — the inductive Bible study cycle">
         <defs>
-          <marker id="cycleArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse">
-            <path d="M0,0 L8,4 L0,8 Z" fill="var(--accent)"/>
+          <marker id="cycleArrow" markerWidth="13" markerHeight="13" refX="6.5" refY="6.5" orient="auto-start-reverse">
+            <path d="M0,0 L13,6.5 L0,13 Z" fill="var(--accent)"/>
           </marker>
           <filter id="neuShadow" x="-60%" y="-60%" width="220%" height="220%">
             <feDropShadow dx="3" dy="3" stdDeviation="3" flood-color="var(--neu-dark)"/>
@@ -5405,7 +5405,10 @@ function openPanelAndScroll(panelId) {
   const body = panel.querySelector('.study-body');
   const isOpen = body && body.classList.contains('open');
   if (!isOpen && body) panel.querySelector('.study-toggle').click();
-  setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), isOpen ? 0 : 60);
+  setTimeout(() => {
+    const top = panel.getBoundingClientRect().top + window.scrollY - 24;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }, isOpen ? 0 : 60);
 }
 
 document.getElementById('cycleObserve').addEventListener('click', () => {
