@@ -6561,6 +6561,32 @@ document.getElementById('cycleApply').addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); document.getElementById('cycleApply').click(); }
 });
 </script>
+<script>
+  window.goatcounter = window.goatcounter || {};
+  window.goatcounter.no_onload = true;
+</script>
 <script data-goatcounter="https://mydailyverses.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function() {
+  function fireCounts() {
+    if (!window.goatcounter || !window.goatcounter.count) return;
+    goatcounter.count({ path: location.pathname, title: document.title, event: false });
+
+    var isStandalone = window.navigator.standalone === true ||
+      (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+    if (isStandalone) {
+      var key = 'mdvInstalledOpenCounted';
+      var already = false;
+      try { already = localStorage.getItem(key) === '1'; } catch (e) {}
+      if (!already) {
+        goatcounter.count({ path: 'pwa-install-detected', title: 'PWA install detected', event: true });
+        try { localStorage.setItem(key, '1'); } catch (e) {}
+      }
+    }
+  }
+  if (document.readyState === 'complete') fireCounts();
+  else window.addEventListener('load', fireCounts);
+})();
+</script>
 </body>
 </html>
