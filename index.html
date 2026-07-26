@@ -109,19 +109,34 @@
   header {
     text-align: center;
     padding-top: 12px;
+    align-self: stretch;
   }
   .app-logo {
     max-width: 280px;
     width: 70%;
-    height: auto;
+    margin: 0 auto;
+    aspect-ratio: 851 / 912;
+    background-image: url('logo-light.webp?v=d01dcff7');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     filter: drop-shadow(0 6px 10px rgba(138,90,59,0.28)) drop-shadow(0 2px 4px rgba(138,90,59,0.18));
   }
   @media (prefers-color-scheme: dark) {
     .app-logo {
+      aspect-ratio: 795 / 827;
+      background-image: url('logo.webp?v=17faeb01');
       filter: drop-shadow(0 10px 22px rgba(0,0,0,0.55)) drop-shadow(0 2px 6px rgba(0,0,0,0.4)) drop-shadow(0 0 34px rgba(224,168,119,0.22));
     }
   }
+  :root[data-theme="light"] .app-logo {
+    aspect-ratio: 851 / 912;
+    background-image: url('logo-light.webp?v=d01dcff7');
+    filter: drop-shadow(0 6px 10px rgba(138,90,59,0.28)) drop-shadow(0 2px 4px rgba(138,90,59,0.18));
+  }
   :root[data-theme="dark"] .app-logo {
+    aspect-ratio: 795 / 827;
+    background-image: url('logo.webp?v=17faeb01');
     filter: drop-shadow(0 10px 22px rgba(0,0,0,0.55)) drop-shadow(0 2px 6px rgba(0,0,0,0.4)) drop-shadow(0 0 34px rgba(224,168,119,0.22));
   }
   .app-version {
@@ -723,7 +738,7 @@
 <div class="wrap">
   <div class="hero">
     <header>
-      <img class="app-logo" alt="My Daily Verses" src="logo.webp?v=17faeb01" width="180" height="187">
+      <div class="app-logo" role="img" aria-label="My Daily Verses"></div>
       <span class="app-version">v.7.25</span>
     </header>
 
