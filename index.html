@@ -115,8 +115,8 @@
     max-width: 280px;
     width: 70%;
     margin: 0 auto;
-    aspect-ratio: 847 / 907;
-    background-image: url('logo-light.webp?v=8aaf5f44');
+    aspect-ratio: 720 / 768;
+    background-image: url('logo.webp?v=9bc4f93f');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,20 +124,14 @@
   }
   @media (prefers-color-scheme: dark) {
     .app-logo {
-      aspect-ratio: 795 / 827;
-      background-image: url('logo.webp?v=17faeb01');
-      filter: drop-shadow(0 10px 22px rgba(0,0,0,0.55)) drop-shadow(0 2px 6px rgba(0,0,0,0.4)) drop-shadow(0 0 34px rgba(224,168,119,0.22));
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) drop-shadow(0 2px 5px rgba(0,0,0,0.35));
     }
   }
   :root[data-theme="light"] .app-logo {
-    aspect-ratio: 847 / 907;
-    background-image: url('logo-light.webp?v=8aaf5f44');
     filter: drop-shadow(0 6px 10px rgba(138,90,59,0.28)) drop-shadow(0 2px 4px rgba(138,90,59,0.18));
   }
   :root[data-theme="dark"] .app-logo {
-    aspect-ratio: 795 / 827;
-    background-image: url('logo.webp?v=17faeb01');
-    filter: drop-shadow(0 10px 22px rgba(0,0,0,0.55)) drop-shadow(0 2px 6px rgba(0,0,0,0.4)) drop-shadow(0 0 34px rgba(224,168,119,0.22));
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) drop-shadow(0 2px 5px rgba(0,0,0,0.35));
   }
   .app-version {
     display: block;
