@@ -641,32 +641,6 @@
   .observation-body { padding: 4px 18px 18px; }
   .observation-body .card:last-child,
   .observation-body .empty-state:last-child { margin-bottom: 4px; }
-  .define-bar {
-    display: none;
-    position: fixed;
-    left: 50%;
-    bottom: calc(20px + env(safe-area-inset-bottom));
-    z-index: 2000;
-    gap: 6px;
-    transform: translateX(-50%);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-    border-radius: 999px;
-    overflow: hidden;
-  }
-  .define-bar.show { display: flex; }
-  .define-btn {
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 8px 16px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-  }
-  .define-btn + .define-btn { border-left: 1px solid rgba(255,255,255,0.3); }
   .search-modal { max-width: 480px; }
   #searchInput {
     font-family: inherit;
@@ -926,11 +900,6 @@
   </div>
 </div>
 
-<div class="define-bar" id="defineBar">
-  <button class="define-btn" id="defineFloatBtn">Define</button>
-  <button class="define-btn" id="commentaryFloatBtn">Commentary</button>
-</div>
-
 <script>
 // ---- Verse data -----------------------------------------------------------
 // Each entry: [month, day, reference, text]
@@ -1083,7 +1052,7 @@ const PRAYER = [[1,1,"Ezekiel 36:26","I will give you a new heart and put a new 
 [5,24,"Genesis 4:7 (ESV)","If you do well, will you not be accepted? And if you do not do well, sin is crouching at the door. Its desire is contrary to you, but you must rule over it."],
 [5,25,"Numbers 20:8-13","“Take the rod; you and your brother Aaron gather the congregation together. Speak to the rock before their eyes, and it will yield its water; thus you shall bring water for them out of the rock, and give drink to the congregation and their animals.” So Moses took the rod from before the LORD as He commanded him.\nAnd Moses and Aaron gathered the assembly together before the rock; and he said to them, “Hear now, you rebels! Must we bring water for you out of this rock?” Then Moses lifted his hand and struck the rock twice with his rod; and water came out abundantly, and the congregation and their animals drank.\nThen the LORD spoke to Moses and Aaron, “Because you did not believe Me, to hallow Me in the eyes of the children of Israel, therefore you shall not bring this assembly into the land which I have given them.”\nThis was the water of Meribah, because the children of Israel contended with the LORD, and He was hallowed among them."],
 [5,26,"1 Thessalonians 2:13","For this reason we also thank God without ceasing, because when you received the word of God which you heard from us, you welcomed it not as the word of men, but as it is in truth, the word of God, which also effectively works in you who believe."],
-[5,27,"2 Corinthians 11:28-30","besides the other things, what comes upon me daily: my deep concern for all the churches. Who is weak, and I am not weak? Who is made to stumble, and I do not burn with indignation? If I must boast, I will boast in the things which concern my infirmity."],
+[5,27,"2 Corinthians 11:28-30","Besides the other things, what comes upon me daily: my deep concern for all the churches. Who is weak, and I am not weak? Who is made to stumble, and I do not burn with indignation? If I must boast, I will boast in the things which concern my infirmity."],
 [5,28,"Genesis 15:5-6","Then He brought him outside and said, “Look now toward heaven, and count the stars if you are able to number them.” And He said to him, “So shall your descendants be.” And he believed in the LORD, and He accounted it to him for righteousness."],
 [5,29,"Acts 4:19-20","But Peter and John answered and said to them, “Whether it is right in the sight of God to listen to you more than to God, you judge. For we cannot but speak the things which we have seen and heard.”"],
 [5,30,"1 Peter 2:11","Beloved, I beg you as sojourners and pilgrims, abstain from fleshly lusts which war against the soul."],
@@ -1153,7 +1122,7 @@ const PRAYER = [[1,1,"Ezekiel 36:26","I will give you a new heart and put a new 
 [8,2,"Numbers 14:6-9","But Joshua the son of Nun and Caleb the son of Jephunneh, who were among those who had spied out the land, tore their clothes; and they spoke to all the congregation of the children of Israel, saying: “The land we passed through to spy out is an exceedingly good land. If the LORD delights in us, then He will bring us into this land and give it to us, a land which flows with milk and honey.’ Only do not rebel against the LORD, nor fear the people of the land, for they are our bread; their protection has departed from them, and the LORD is with us. Do not fear them.”"],
 [8,3,"Philippians 4:6-7","Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving, let your requests be made known to God; and the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus."],
 [8,4,"Proverbs 22:3","A prudent man foresees evil and hides himself, but the simple pass on and are punished."],
-[8,5,"Colossians 2:2-3","that their hearts may be encouraged, being knit together in love, and attaining to all riches of the full assurance of understanding, to the knowledge of the mystery of God, both of the Father and of Christ, in whom are hidden all the treasures of wisdom and knowledge."],
+[8,5,"Colossians 2:2-3","That their hearts may be encouraged, being knit together in love, and attaining to all riches of the full assurance of understanding, to the knowledge of the mystery of God, both of the Father and of Christ, in whom are hidden all the treasures of wisdom and knowledge."],
 [8,6,"John 12:25-26","He who loves his life will lose it, and he who hates his life in this world will keep it for eternal life. If anyone serves Me, let him follow Me; and where I am, there My servant will be also. If anyone serves Me, him My Father will honor."],
 [8,7,"2 Timothy 2:21 (NLT)","If you keep yourself pure, you will be a special vessel for honorable use. Your life will be clean, and you will be ready for the Master to use you for every good work."],
 [8,8,"Acts 4:13 (ESV)","Now when they saw the boldness of Peter and John, and perceived that they were uneducated, common men, they were astonished. And they recognized that they had been with Jesus."],
@@ -1257,7 +1226,7 @@ const PRAYER = [[1,1,"Ezekiel 36:26","I will give you a new heart and put a new 
 [11,14,"Psalms 107:4-9","They wandered in the wilderness in a desolate way;\nThey found no city to dwell in.\nHungry and thirsty,\nTheir soul fainted in them.\nThen they cried out to the LORD in their trouble,\nAnd He delivered them out of their distresses.\nAnd He led them forth by the right way,\nThat they might go to a city for a dwelling place.\nOh, that men would give thanks to the LORD for His goodness,\nAnd for His wonderful works to the children of men!\nFor He satisfies the longing soul,\nAnd fills the hungry soul with goodness."],
 [11,15,"Romans 16:25-27","Now to Him who is able to establish you according to my gospel and the preaching of Jesus Christ, according to the revelation of the mystery kept secret since the world began but now made manifest, and by the prophetic Scriptures made known to all nations, according to the commandment of the everlasting God, for obedience to the faith— to God, alone wise, be glory through Jesus Christ forever. Amen."],
 [11,16,"Colossians 4:17b (ESV)","See that you fulfill the ministry that you have received in the Lord."],
-[11,17,"1 Thessalonians 4:11-12","that you also aspire to lead a quiet life, to mind your own business, and to work with your own hands, as we commanded you, that you may walk properly toward those who are outside, and that you may lack nothing."],
+[11,17,"1 Thessalonians 4:11-12","That you also aspire to lead a quiet life, to mind your own business, and to work with your own hands, as we commanded you, that you may walk properly toward those who are outside, and that you may lack nothing."],
 [11,18,"Hebrews 4:12","For the word of God is living and powerful, and sharper than any two-edged sword, piercing even to the division of soul and spirit, and of joints and marrow, and is a discerner of the thoughts and intents of the heart."],
 [11,19,"Habakkuk 2:14","For the earth will be filled\nWith the knowledge of the glory of the LORD,\nAs the waters cover the sea."],
 [11,20,"Proverbs 11:28","He who trusts in his riches will fall,\nBut the righteous will flourish like foliage."],
@@ -1289,7 +1258,7 @@ const PRAYER = [[1,1,"Ezekiel 36:26","I will give you a new heart and put a new 
 [12,16,"Mark 12:43-44","So He called His disciples to Himself and said to them, “Assuredly, I say to you that this poor widow has put in more than all those who have given to the treasury; for they all put in out of their abundance, but she out of her poverty put in all that she had, her whole livelihood.”"],
 [12,17,"Hebrews 12:1","Therefore we also, since we are surrounded by so great a cloud of witnesses, let us lay aside every weight, and the sin which so easily ensnares us, and let us run with endurance the race that is set before us."],
 [12,18,"Psalms 42:11","Why are you cast down, O my soul?\nAnd why are you disquieted within me?\nHope in God;\nFor I shall yet praise Him,\nThe help of my countenance and my God."],
-[12,19,"Mark 5:23","and begged Him earnestly, saying, “My little daughter lies at the point of death. Come and lay Your hands on her, that she may be healed, and she will live.”"],
+[12,19,"Mark 5:23","And begged Him earnestly, saying, “My little daughter lies at the point of death. Come and lay Your hands on her, that she may be healed, and she will live.”"],
 [12,20,"James 1:25","But he who looks into the perfect law of liberty and continues in it, and is not a forgetful hearer but a doer of the work, this one will be blessed in what he does."],
 [12,21,"Psalms 17:6-9","I have called upon You, for You will hear me, O God; Incline Your ear to me, and hear my speech. Show Your marvelous lovingkindness by Your right hand, O You who save those who trust in You From those who rise up against them. Keep me as the apple of Your eye; Hide me under the shadow of Your wings, from the wicked who oppress me, from my deadly enemies who surround me."],
 [12,22,"Daniel 5:17","Then Daniel answered, and said before the king, “Let your gifts be for yourself, and give your rewards to another; yet I will read the writing to the king, and make known to him the interpretation."],
@@ -1317,7 +1286,7 @@ const MEDITATION = [[1,1,"2 Corinthians 5:17-21","Therefore, if anyone is in Chr
 [1,11,"Leviticus 20:23","And you shall not walk in the statutes of the nation which I am casting out before you; for they commit all these things, and therefore I abhor them."],
 [1,12,"Genesis 4:6-7","So the Lord said to Cain, “Why are you angry? And why has your countenance fallen? If you do well, will you not be accepted? And if you do not do well, sin lies at the door. And its desire is for you, but you should rule over it.”"],
 [1,13,"Galatians 2:20","I have been crucified with Christ; it is no longer I who live, but Christ lives in me; and the life which I now live in the flesh I live by faith in the Son of God, who loved me and gave Himself for me."],
-[1,14,"Genesis 7:14-20","they and every beast after its kind, all cattle after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort. And they went into the ark to Noah, two by two, of all flesh in which is the breath of life. So those that entered, male and female of all flesh, went in as God had commanded him; and the LORD shut him in. Now the flood was on the earth forty days. The waters increased and lifted up the ark, and it rose high above the earth. The waters prevailed and greatly increased on the earth, and the ark moved about on the surface of the waters. And the waters prevailed exceedingly on the earth, and all the high hills under the whole heaven were covered. The waters prevailed fifteen cubits upward, and the mountains were covered."],
+[1,14,"Genesis 7:14-20","They and every beast after its kind, all cattle after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort. And they went into the ark to Noah, two by two, of all flesh in which is the breath of life. So those that entered, male and female of all flesh, went in as God had commanded him; and the LORD shut him in. Now the flood was on the earth forty days. The waters increased and lifted up the ark, and it rose high above the earth. The waters prevailed and greatly increased on the earth, and the ark moved about on the surface of the waters. And the waters prevailed exceedingly on the earth, and all the high hills under the whole heaven were covered. The waters prevailed fifteen cubits upward, and the mountains were covered."],
 [1,15,"1 Thessalonians 2:19-20","For what is our hope, or joy, or crown of rejoicing? Is it not even you in the presence of our Lord Jesus Christ at His coming? For you are our glory and joy."],
 [1,16,"Genesis 9:1-7","So God blessed Noah and his sons, and said to them: “Be fruitful and multiply, and fill the earth. And the fear of you and the dread of you shall be on every beast of the earth, on every bird of the air, on all that move on the earth, and on all the fish of the sea. They are given into your hand. Every moving thing that lives shall be food for you. I have given you all things, even as the green herbs. But you shall not eat flesh with its life, that is, its blood. Surely for your lifeblood I will demand a reckoning; from the hand of every beast I will require it, and from the hand of man. From the hand of every man’s brother I will require the life of man.\nWhoever sheds man’s blood,\nBy man his blood shall be shed;\nFor in the image of God\nHe made man.\nAnd as for you, be fruitful and multiply;\nBring forth abundantly in the earth\nAnd multiply in it.”"],
 [1,17,"Jeremiah 9:23-24","Thus says the LORD: “Let not the wise man glory in his wisdom, let not the mighty man glory in his might, nor let the rich man glory in his riches; But let him who glories glory in this, that he understands and knows Me, that I am the LORD, exercising lovingkindness, judgment, and righteousness in the earth. For in these I delight,” says the LORD."],
@@ -1436,7 +1405,7 @@ const MEDITATION = [[1,1,"2 Corinthians 5:17-21","Therefore, if anyone is in Chr
 [5,9,"Matthew 20:16","So the last will be first, and the first last. For many are called, but few chosen.”"],
 [5,10,"Joshua 1:7-9","Only be strong and very courageous, that you may observe to do according to all the law which Moses My servant commanded you; do not turn from it to the right hand or to the left, that you may prosper wherever you go. This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night, that you may observe to do according to all that is written in it. For then you will make your way prosperous, and then you will have good success. Have I not commanded you? Be strong and of good courage; do not be afraid, nor be dismayed, for the LORD your God is with you wherever you go.”"],
 [5,11,"Genesis 13:16-18","And I will make your descendants as the dust of the earth; so that if a man could number the dust of the earth, then your descendants also could be numbered. Arise, walk in the land through its length and its width, for I give it to you.” Then Abram moved his tent, and went and dwelt by the terebinth trees of Mamre, which are in Hebron, and built an altar there to the LORD."],
-[5,12,"Colossians 1:10-14","that you may walk worthy of the Lord, fully pleasing Him, being fruitful in every good work and increasing in the knowledge of God; strengthened with all might, according to His glorious power, for all patience and longsuffering with joy; giving thanks to the Father who has qualified us to be partakers of the inheritance of the saints in the light. He has delivered us from the power of darkness and conveyed us into the kingdom of the Son of His love, in whom we have redemption through His blood, the forgiveness of sins."],
+[5,12,"Colossians 1:10-14","That you may walk worthy of the Lord, fully pleasing Him, being fruitful in every good work and increasing in the knowledge of God; strengthened with all might, according to His glorious power, for all patience and longsuffering with joy; giving thanks to the Father who has qualified us to be partakers of the inheritance of the saints in the light. He has delivered us from the power of darkness and conveyed us into the kingdom of the Son of His love, in whom we have redemption through His blood, the forgiveness of sins."],
 [5,13,"Isaiah 58:6-12","“Is this not the fast that I have chosen:\nTo loose the bonds of wickedness,\nTo undo the heavy burdens,\nTo let the oppressed go free,\nAnd that you break every yoke?\nIs it not to share your bread with the hungry,\nAnd that you bring to your house the poor who are cast out;\nWhen you see the naked, that you cover him,\nAnd not hide yourself from your own flesh?\nThen your light shall break forth like the morning,\nYour healing shall spring forth speedily,\nAnd your righteousness shall go before you;\nThe glory of the LORD shall be your rear guard.\nThen you shall call, and the LORD will answer;\nYou shall cry, and He will say, ‘Here I am.’\nIf you take away the yoke from your midst,\nThe pointing of the finger, and speaking wickedness,\nIf you extend your soul to the hungry\nAnd satisfy the afflicted soul,\nThen your light shall dawn in the darkness,\nAnd your darkness shall be as the noonday.\nThe LORD will guide you continually,\nAnd satisfy your soul in drought,\nAnd strengthen your bones;\nYou shall be like a watered garden,\nAnd like a spring of water, whose waters do not fail.\nThose from among you\nShall build the old waste places;\nYou shall raise up the foundations of many generations;\nAnd you shall be called the Repairer of the Breach,\nThe Restorer of Streets to Dwell In."],
 [5,14,"Numbers 6:24-26","The LORD bless you and keep you; The LORD make His face shine upon you, and be gracious to you; The LORD lift up His countenance upon you, and give you peace."],
 [5,15,"John 1:17","For the law was given through Moses, but grace and truth came through Jesus Christ."],
@@ -1568,7 +1537,7 @@ const MEDITATION = [[1,1,"2 Corinthians 5:17-21","Therefore, if anyone is in Chr
 [9,19,"2 Timothy 4:6-8","For I am already being poured out as a drink offering, and the time of my departure has come. I have fought the good fight, I have finished the race, I have kept the faith. Henceforth there is laid up for me the crown of righteousness, which the Lord, the righteous judge, will award to me on that day, and not only to me but also to all who have loved his appearing."],
 [9,20,"1 Thessalonians 4:1-8","Finally then, brethren, we urge and exhort in the Lord Jesus that you should abound more and more, just as you received from us how you ought to walk and to please God; for you know what commandments we gave you through the Lord Jesus.\nFor this is the will of God, your sanctification: that you should abstain from sexual immorality; that each of you should know how to possess his own vessel in sanctification and honor, not in passion of lust, like the Gentiles who do not know God; that no one should take advantage of and defraud his brother in this matter, because the Lord is the avenger of all such, as we also forewarned you and testified. For God did not call us to uncleanness, but in holiness. Therefore he who rejects this does not reject man, but God, who has also given us His Holy Spirit."],
 [9,21,"2 Peter 1:19 (ESV)","And we have the prophetic word more fully confirmed, to which you will do well to pay attention as to a lamp shining in a dark place, until the day dawns and the morning star rises in your hearts."],
-[9,22,"Ephesians 1:17-20","that the God of our Lord Jesus Christ, the Father of glory, may give to you the spirit of wisdom and revelation in the knowledge of Him, the eyes of your understanding being enlightened; that you may know what is the hope of His calling, what are the riches of the glory of His inheritance in the saints, and what is the exceeding greatness of His power toward us who believe, according to the working of His mighty power which He worked in Christ when He raised Him from the dead and seated Him at His right hand in the heavenly places,"],
+[9,22,"Ephesians 1:17-20","That the God of our Lord Jesus Christ, the Father of glory, may give to you the spirit of wisdom and revelation in the knowledge of Him, the eyes of your understanding being enlightened; that you may know what is the hope of His calling, what are the riches of the glory of His inheritance in the saints, and what is the exceeding greatness of His power toward us who believe, according to the working of His mighty power which He worked in Christ when He raised Him from the dead and seated Him at His right hand in the heavenly places,"],
 [9,23,"Hebrews 10:19-23","Therefore, brethren, having boldness to enter the Holiest by the blood of Jesus, by a new and living way which He consecrated for us, through the veil, that is, His flesh, and having a High Priest over the house of God, let us draw near with a true heart in full assurance of faith, having our hearts sprinkled from an evil conscience and our bodies washed with pure water. Let us hold fast the confession of our hope without wavering, for He who promised is faithful."],
 [9,24,"Genesis 5:28-29","Lamech lived one hundred and eighty-two years, and had a son. And he called his name Noah, saying, “This one will comfort us concerning our work and the toil of our hands, because of the ground which the LORD has cursed.”"],
 [9,25,"1 Corinthians 2:2","For I determined not to know anything among you except Jesus Christ and Him crucified."],
@@ -1617,7 +1586,7 @@ const MEDITATION = [[1,1,"2 Corinthians 5:17-21","Therefore, if anyone is in Chr
 [11,7,"John 17:23","I in them, and You in Me; that they may be made perfect in one, and that the world may know that You have sent Me, and have loved them as You have loved Me."],
 [11,8,"Revelation 4:8","The four living creatures, each having six wings, were full of eyes around and within. And they do not rest day or night, saying: “Holy, holy, holy, Lord God Almighty, Who was and is and is to come!”"],
 [11,9,"Genesis 24:33-40","Food was set before him to eat, but he said, “I will not eat until I have told about my errand.” And he said, “Speak on.” So he said, “I am Abraham’s servant. The LORD has blessed my master greatly, and he has become great; and He has given him flocks and herds, silver and gold, male and female servants, and camels and donkeys. And Sarah my master’s wife bore a son to my master when she was old; and to him he has given all that he has. Now my master made me swear, saying, ‘You shall not take a wife for my son from the daughters of the Canaanites, in whose land I dwell; but you shall go to my father’s house and to my family, and take a wife for my son.’ And I said to my master, ‘Perhaps the woman will not follow me.’ But he said to me, ‘The LORD, before whom I walk, will send His angel with you and prosper your way; and you shall take a wife for my son from my family and from my father’s house."],
-[11,10,"Genesis 2:17-18","but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.” And the LORD God said, “It is not good that man should be alone; I will make him a helper comparable to him.”"],
+[11,10,"Genesis 2:17-18","But of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.” And the LORD God said, “It is not good that man should be alone; I will make him a helper comparable to him.”"],
 [11,11,"Psalms 131:1b (ESV)","I do not occupy myself with things too great and too marvelous for me."],
 [11,12,"Ephesians 6:10-18","Finally, my brethren, be strong in the Lord and in the power of His might. Put on the whole armor of God, that you may be able to stand against the wiles of the devil. For we do not wrestle against flesh and blood, but against principalities, against powers, against the rulers of the darkness of this age, against spiritual hosts of wickedness in the heavenly places. Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand. Stand therefore, having girded your waist with truth, having put on the breastplate of righteousness, and having shod your feet with the preparation of the gospel of peace; above all, taking the shield of faith with which you will be able to quench all the fiery darts of the wicked one. And take the helmet of salvation, and the sword of the Spirit, which is the word of God; praying always with all prayer and supplication in the Spirit, being watchful to this end with all perseverance and supplication for all the saints—"],
 [11,13,"Colossians 3:12-17","Therefore, as the elect of God, holy and beloved, put on tender mercies, kindness, humility, meekness, longsuffering; bearing with one another, and forgiving one another, if anyone has a complaint against another; even as Christ forgave you, so you also must do. But above all these things put on love, which is the bond of perfection. And let the peace of God rule in your hearts, to which also you were called in one body; and be thankful. Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord. And whatever you do in word or deed, do all in the name of the Lord Jesus, giving thanks to God the Father through Him."],
@@ -1928,7 +1897,7 @@ const WORSHIP = [[1,1,"Lamentations 3:22-23","Through the LORD’s mercies we ar
 [9,14,"Hebrews 7:1-3","For this Melchizedek, king of Salem, priest of the Most High God, who met Abraham returning from the slaughter of the kings and blessed him, to whom also Abraham gave a tenth part of all, first being translated “king of righteousness,” and then also king of Salem, meaning “king of peace,” without father, without mother, without genealogy, having neither beginning of days nor end of life, but made like the Son of God, remains a priest continually."],
 [9,15,"Isaiah 25:1","O LORD, You are my God. I will exalt You, I will praise Your name, For You have done wonderful things; Your counsels of old are faithfulness and truth."],
 [9,16,"Romans 8:37-39","Yet in all these things we are more than conquerors through Him who loved us. For I am persuaded that neither death nor life, nor angels nor principalities nor powers, nor things present nor things to come, nor height nor depth, nor any other created thing, shall be able to separate us from the love of God which is in Christ Jesus our Lord."],
-[9,17,"1 Timothy 6:15-16","which He will manifest in His own time, He who is the blessed and only Potentate, the King of kings and Lord of lords, who alone has immortality, dwelling in unapproachable light, whom no man has seen or can see, to whom be honor and everlasting power. Amen."],
+[9,17,"1 Timothy 6:15-16","Which He will manifest in His own time, He who is the blessed and only Potentate, the King of kings and Lord of lords, who alone has immortality, dwelling in unapproachable light, whom no man has seen or can see, to whom be honor and everlasting power. Amen."],
 [9,18,"Judges 13:6","So the woman came and told her husband, saying, “A Man of God came to me, and His countenance was like the countenance of the Angel of God, very awesome; but I did not ask Him where He was from, and He did not tell me His name."],
 [9,19,"Reflection (EN)","The believer’s ultimate occupation and purpose is to worship God in the beauty of holiness, in spirit and in truth. In the Scriptures believers are called to be part of a kingdom of priests and a holy nation."],
 [9,20,"Psalms 113:1-6","Praise the LORD!\nPraise, O servants of the LORD,\nPraise the name of the LORD!\nBlessed be the name of the LORD\nFrom this time forth and forevermore!\nFrom the rising of the sun to its going down\nThe LORD’s name is to be praised.\nThe LORD is high above all nations,\nHis glory above the heavens.\nWho is like the LORD our God,\nWho dwells on high,\nWho humbles Himself to behold\nThe things that are in the heavens and in the earth?"],
@@ -2635,7 +2604,7 @@ const EXPLANATIONS = {
     "7-26": "The Teacher observes something uncomfortable, talent and effort do not guarantee outcomes, time and chance happen to everyone, the fast do not always win and the wise do not always prosper. This is not fatalism, it's realism meant to loosen our grip on outcomes we cannot control, and push our security somewhere steadier than our own skill.",
     "7-27": "Peter's statement isn't a boast so much as an honest tally, we have left all, and Jesus doesn't dismiss the cost, He names it directly alongside the reward. The hundredfold promise doesn't erase what was given up, it comes bundled explicitly with persecutions, reward and hardship named in the very same breath rather than reward replacing hardship. Houses, family, and land given up for Jesus's sake come back multiplied, but within a community, not as private wealth, brothers and sisters and mothers found among fellow believers. The closing reversal, many who are first will be last, unsettles anyone tallying up their sacrifice expecting a predictable return on investment.",
     "7-28": "This breastplate isn't generic ceremonial jewelry, it's built with remarkable specificity, twelve stones in four rows, each one engraved with the name of one of Israel's twelve tribes. The high priest literally carries the names of all twelve tribes over his heart whenever he enters God's presence, every single tribe represented, not merely the priestly line or the most prominent families. Calling it the breastplate of judgment ties this physical object to Israel's access to God's guidance and decisions, worn specifically for that purpose, not just for appearance. Every time Aaron approached God on Israel's behalf, this breastplate meant no tribe was left out of that access, each one held, quite literally, close to the priest's own heart.",
-    "7-29": "Paul grounds this appeal specifically in mercy already received, by the mercies of God, response following gift rather than earning one. A living sacrifice is a striking phrase, sacrifices in the Old Testament died, this one is offered while still fully alive, ongoing rather than a single completed act. Paul names two forces working in opposite directions, the world's pressure to conform pulling one way, the Spirit's renewal of the mind transforming another, and he's clear only one produces the ability to actually discern God's will. Proving what is good and acceptable and perfect isn't treated as automatic knowledge, it's the result specifically of a mind being renewed, not merely of good intentions applied to an unchanged way of thinking.",
+    "7-29": "Paul's appeal rests entirely on mercy already given, obedience offered in response to grace received rather than performed to earn it. A living sacrifice reverses the usual pattern, Old Testament sacrifices died on the altar, but this offering is a life that stays fully alive, given continuously rather than all at once. Paul calls this reasonable service, worship was never meant to stay confined to rituals and offerings, it's the whole of an ordinary life handed over to God. Resisting the world's pull to conform takes more than willpower, Paul locates the real change in a mind actually being renewed, which is what equips someone to recognize God's good, acceptable, and perfect will in the first place.",
     "7-30": "Paul opens with instructions about community, recognizing and esteeming those who labor and lead, esteem grounded specifically in their work rather than in status or title. The exhortations that follow cover a wide range of people needing different responses, warning the unruly, comforting the fainthearted, upholding the weak, being patient with all, refusing a one-size-fits-all approach to caring for a congregation. Rejoice always, pray without ceasing, in everything give thanks are named together as the will of God, three continuous postures rather than occasional reactions to good circumstances. Paul closes with three commands together, do not quench the Spirit, do not despise prophecies, test all things, refusing both uncritical acceptance and dismissive rejection of spiritual claims, asking for the harder, middle path of testing everything carefully and holding fast only to what proves genuinely good.",
     "7-31": "Abram initiates this resolution himself, and his proposed terms are strikingly generous, letting Lot, the younger relative, choose first between the whole land available. Calling Lot brethren rather than nephew softens a potential property dispute into a family matter worth protecting more than the land itself. Lot's choice, described through what his eyes saw, well watered everywhere, like the garden of the LORD, reads as purely visual and immediate, with no mention of weighing what kind of neighbors that well-watered plain actually had. Abram's willingness to let go of the better option first is what makes room for God's later promise of the whole land to be given, not earned by holding out for the best portion.",
     "8-1": "Jesus assigns real weight to how someone treats those the world considers small or unimportant, tying it directly to the fact that their angels have constant access to the Father's presence. Despising a little one isn't framed as a minor lapse in kindness, it's treated as brushing against something that has direct standing before God. The image of angels who always see His face pictures heaven as attentive to exactly the people easiest to overlook on earth. Care for the overlooked isn't optional kindness here, it's calibrated to how seriously heaven itself already takes them.",
@@ -3169,13 +3138,13 @@ const EXPLANATIONS = {
 const GLOSSARY = {
   "son of man": "Jesus's own favorite title for Himself, drawn from Daniel 7:13-14, where “one like a son of man” comes on the clouds of heaven and is given an everlasting kingdom. It sounds humble but claims everything: full humanity and divine authority in one phrase. When Jesus is called “the Son of Man,” it isn't softening His identity, it's pointing straight at His deity.",
   "son of man (mankind)": "A common Hebrew poetic phrase simply meaning a human being, paired with \"man\" for emphasis, as in Psalm 8's wonder that God is mindful of mankind at all (Psalm 8:4). Distinct from Jesus's messianic title drawn from Daniel 7, though the New Testament later applies this psalm's language of humble, dependent humanity to Christ Himself, the true and greater Son of Man.",
-  "grace": "Undeserved favor: God's goodness given to people who have no claim on it and could not earn it. In the New Testament it's tied directly to what Christ did, not what we do. “grace” gets used loosely for any kindness, but its biblical weight is specific — help and forgiveness that flow entirely from God's initiative, never from our performance.",
+  "grace": "Undeserved favor: God's goodness given to people who have no claim on it and could not earn it. In the New Testament it's tied directly to what Christ did, not what we do. “Grace” gets used loosely for any kindness, but its biblical weight is specific — help and forgiveness that flow entirely from God's initiative, never from our performance.",
   "godliness": "A life shaped by reverence for God, showing up in ordinary conduct, not just religious feeling. Peter pairs it with holy conduct because the two can't be separated. Often mistaken for niceness or moral effort, but its root is “godlikeness” — living in a way that reflects who God is, out of love for Him rather than fear of being caught.",
   "manna": "The bread-like food God provided each morning in the wilderness, which the Israelites had never seen before and couldn't stockpile — it had to be gathered fresh daily. Shorthand for provision that requires trust, arriving exactly when needed and not a day early.",
   "kingdom of god": "God's reign, wherever His authority is acknowledged and obeyed, not a place with borders. Jesus announced it had already begun breaking into the world in Him, though its fullness is still to come. Not a future-only hope but a present reality wherever Christ is King over a life.",
   "righteousness": "Describes both God's own perfect moral character, the foundation of His throne and His just governance of the world (Psalm 89:14), and, for people, a right standing given to them rather than earned. For believers this status comes through faith in Christ, crediting them with His righteousness instead of their own, not a record built from good behavior. The same word names the Judge's own perfect justice and the gift He credits to those who trust Him.",
   "eternal life": "Not simply unending existence, but the specific life of knowing God through Christ, starting now and continuing forever (John 17:3). Often pictured as only a future reward, but Scripture treats it as a quality of life available the moment someone trusts Christ.",
-  "cross": "In Jesus's day, an instrument of Roman execution reserved for the worst criminals and rebels. To take up your cross meant carrying your own execution beam, a walk with only one destination. Jesus turned that image into the definition of following Him: total, costly, public allegiance. “a cross to bear” has been softened to mean any hardship, but Jesus meant something more specific — dying to self-rule so He can be Lord.",
+  "cross": "In Jesus's day, an instrument of Roman execution reserved for the worst criminals and rebels. To take up your cross meant carrying your own execution beam, a walk with only one destination. Jesus turned that image into the definition of following Him: total, costly, public allegiance. “A cross to bear” has been softened to mean any hardship, but Jesus meant something more specific — dying to self-rule so He can be Lord.",
   "hallowed": "To be treated as holy, set apart, uniquely sacred — not made holy (it already is) but recognized and honored as such by us. The word barely survives in modern English outside this prayer, but its meaning persists in communion tables, wedding vows, and any moment we consciously set the sacred apart from the ordinary.",
   "spirit": "The third Person of the Trinity: fully God, sent to indwell, empower, and guide believers. At Jesus's baptism the Spirit visibly confirms Him as the Son the Father is well pleased with. Not a force or a feeling, but a Person to know — the same Spirit who descended on Jesus is the one who lives in every believer (Romans 8:9).",
   "spirit (human)": "A person's own inner being, disposition, or attitude, distinct from the Holy Spirit, though God is often the one who renews or shapes it. Scripture speaks of a contrite spirit (Isaiah 66:2), a steadfast spirit (Psalm 51:10), and a spirit that can be patient or proud (Ecclesiastes 7:8), naming the inward part of a person the way heart and soul also do.",
@@ -3183,7 +3152,7 @@ const GLOSSARY = {
   "son of david": "A messianic title rooted in God's promise that David's throne would last forever (2 Samuel 7:12-13). When the crowds cry it out to Jesus, they aren't just admiring Him, they're identifying Him as the promised King. A reminder that Jesus's kingship wasn't a later add-on to His identity — it was expected, prophesied, and named from the start.",
   "christ": "Not Jesus's last name, but His title: the Greek translation of the Hebrew “Messiah,” meaning “Anointed One” — the promised King, Priest, and Prophet sent by God. When the high priest asks if Jesus is “the Christ,” he's asking the one question that determines everything. “Jesus Christ” is really a confession, “Jesus is the Anointed One,” every time it's said.",
   "day of god": "Prophetic shorthand for the moment God sets everything right, judges evil, and remakes creation (also called “the Day of the Lord” in the Old Testament). Peter uses it to describe both an ending and a beginning. Not meant to produce anxiety about a deadline, but hope that history is going somewhere, and that somewhere is good.",
-  "glory": "The visible weight of God's presence: not simply brightness, but the tangible evidence that God Himself is near. At the Transfiguration, Jesus's glory isn't put on Him, it's His own glory breaking through what usually stays hidden. “glory” often gets flattened into a synonym for praise, but in Scripture it starts as something you'd see and feel, not just say.",
+  "glory": "The visible weight of God's presence: not simply brightness, but the tangible evidence that God Himself is near. At the Transfiguration, Jesus's glory isn't put on Him, it's His own glory breaking through what usually stays hidden. “Glory” often gets flattened into a synonym for praise, but in Scripture it starts as something you'd see and feel, not just say.",
   "departure": "Luke's Greek word here is literally “exodus.” Moses and Elijah, at the Transfiguration, are talking with Jesus about the death, resurrection, and ascension He is about to accomplish in Jerusalem, His own exodus, echoing the first one out of Egypt. A reminder that Jesus's death was not a defeat that interrupted His mission, it was the mission, planned and discussed in glory before it happened in history.",
   "steadfastness": "Endurance that holds its course under pressure, not by gritting through but by staying anchored to something outside the difficulty itself. Paul lists it alongside faith, love, and patience as something Timothy actually watched him live out. Distinct from stubbornness — steadfastness is aimed at faithfulness to Christ, not just refusing to quit.",
   "commandments": "God's revealed instructions for His people, given not as arbitrary rules but as the terms of a relationship already established by grace (He rescued Israel before He gave the commandments, not after). Keeping them is less about earning God's favor and more about staying in step with a God who has already committed Himself to you.",
@@ -3192,10 +3161,10 @@ const GLOSSARY = {
   "law": "God's revealed teaching and instruction, most fully given through Moses — far broader than a list of rules, closer to a way of life laid out by God for His people's good. The psalmist calls those who walk in it “blessed,” not burdened. Christians relate to it through Christ, who fulfilled it (Matthew 5:17), but its portrait of a flourishing life still shapes how we read all of Scripture.",
   "lawful": "Permitted, allowed, or in keeping with a standard, a broader and more everyday sense than \"law\" as God's revealed teaching through Moses. Paul uses it to test Christian freedom, all things are lawful for me, but not all things are helpful (1 Corinthians 6:12), and Ezekiel uses it of a wicked person who turns and does what is lawful and right. It's less about a specific body of teaching and more about whether a given action is permitted or right in the moment.",
   "temptation": "The pull toward sin, whether from our own desires, the world, or the enemy — Jesus teaches us to pray for God to keep us away from it rather than trusting our own strength to resist it once we're in it. A request for God to guard the door, not just help us win the fight once we're already inside the room.",
-  "debts": "Sin pictured as something owed, a debt we cannot repay ourselves. Jesus ties being forgiven this debt directly to forgiving others theirs, in the very next line. “debts” makes forgiveness concrete — not a vague feeling to work up, but the cancellation of something specific and real, extended to others the way it was extended to us.",
+  "debts": "Sin pictured as something owed, a debt we cannot repay ourselves. Jesus ties being forgiven this debt directly to forgiving others theirs, in the very next line. “Debts” makes forgiveness concrete — not a vague feeling to work up, but the cancellation of something specific and real, extended to others the way it was extended to us.",
   "resurrection": "Not resuscitation back into the same mortal life, but bodily life raised into a new, imperishable kind of existence, beginning with Christ and promised to everyone united to Him. Paul wants to know its power now, not just receive it later. Resurrection isn't only a future event to hope for, it's a present power available to change how we live today.",
   "mercy": "Compassion shown to someone who deserves the opposite — not getting the punishment your actions actually earned. Distinct from grace, which gives what you don't deserve, mercy withholds what you do deserve. Often used loosely for any kindness, but biblical mercy specifically means being spared judgment you had coming.",
-  "wisdom": "Not just information or cleverness, but the God-given skill of applying truth rightly to real situations — knowing not just what is right, but how to live it out. James says it's available simply by asking. “wisdom” gets used for worldly savvy or life hacks, but Scripture ties it directly to the fear of the Lord (Proverbs 9:10) — it starts with who you trust, not what you know.",
+  "wisdom": "Not just information or cleverness, but the God-given skill of applying truth rightly to real situations — knowing not just what is right, but how to live it out. James says it's available simply by asking. “Wisdom” gets used for worldly savvy or life hacks, but Scripture ties it directly to the fear of the Lord (Proverbs 9:10) — it starts with who you trust, not what you know.",
   "wisdom (of this age)": "Worldly cleverness and impressive human philosophy, the kind of wisdom Scripture says God has made foolish, since it never actually knew Him (1 Corinthians 1:20) and can't compare to the folly of the cross (1 Corinthians 3:19). Distinct from the God-given wisdom that starts with the fear of the Lord, this is the wisdom the world admires and Scripture unmasks.",
   "truth": "Not just factual accuracy, but reality as God defines it, ultimately embodied in Christ Himself (John 14:6). To “walk in truth” means a life shaped by what's actually real about God, not by what feels true. In a culture that treats truth as personal and adjustable, this word insists there's a reality outside us we're accountable to.",
   "gospel": "Literally “good news”: the announcement that Jesus, the promised Son of David, died for sins and was raised bodily from the dead, and that anyone can be reconciled to God through Him. Paul calls himself “separated” to it, set apart for this one message above all else. Often reduced to a private ticket to heaven, but the New Testament treats it as history-altering public news, meant to be announced, not just believed quietly.",
@@ -4775,7 +4744,7 @@ const REFLECTIONS = {
     "7-31": "This song anticipates a day when all nations will actually come and worship. Who from a background different than yours could you imagine worshiping alongside today, even in a small way?",
     "8-1": "Moses' first response to being called was \"who am I,\" and God's answer was essentially \"who I am matters more.\" What task are you avoiding because you're focused on your own inadequacy instead of on Him?",
     "8-2": "The people's response to this overwhelming display is remarkably simple. What overwhelming thing has God done in your life that deserves a simple, repeated response of thanks today?",
-    "8-3": "This truth needed saying by every different group present, not just one voice. Who could you say this same truth to today, out loud, so it's not just privately held?",
+    "8-3": "This same refrain, His mercy endures forever, is repeated by three separate groups, Israel, the priests, and all who fear the LORD, until it becomes shared testimony rather than private opinion. What mercy of God could you actually say out loud to someone today instead of just believing it quietly?",
     "8-4": "The people who knew Jesus's hometown were the most skeptical of Him. Is there a familiar truth about Jesus you've grown too used to that could use fresh astonishment today?",
     "8-5": "Paul says believers will eventually bear Christ's own image, not just improve their own. What part of your identity today are you still trying to fix on your own instead of trusting this future transformation?",
     "8-6": "David's praise here reaches beyond Israel's own borders, among the Gentiles. Who outside your usual circle could you actually share a specific answered prayer with today?",
@@ -6351,123 +6320,6 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js").catch(() => {});
   });
 }
-
-// ---- Select any word or phrase to look it up in the glossary ---------------
-
-function normalizeForLookup(s) {
-  return s.trim().toLowerCase().replace(/[.,!?;:"“”‘’]/g, "").replace(/\s+/g, " ");
-}
-
-function glossaryCandidates(word) {
-  const candidates = [word];
-  if (word.endsWith("'s")) candidates.push(word.slice(0, -2));
-  if (word.endsWith("ies") && word.length > 4) candidates.push(word.slice(0, -3) + "y");
-  if (word.endsWith("es") && word.length > 3) candidates.push(word.slice(0, -2));
-  if (word.endsWith("s") && !word.endsWith("ss") && word.length > 2) candidates.push(word.slice(0, -1));
-  if (word.endsWith("ing") && word.length > 5) {
-    candidates.push(word.slice(0, -3));
-    candidates.push(word.slice(0, -3) + "e");
-  }
-  if (word.endsWith("ed") && word.length > 4) {
-    candidates.push(word.slice(0, -2));
-    candidates.push(word.slice(0, -1));
-  }
-  return candidates;
-}
-
-function findGlossaryMatch(selectedText) {
-  const norm = normalizeForLookup(selectedText);
-  if (!norm) return null;
-  for (const c of glossaryCandidates(norm)) {
-    if (GLOSSARY[c]) return c;
-  }
-  // Multi-word selection: try each individual word (longest first) if the whole phrase didn't match.
-  const words = norm.split(" ").filter(Boolean);
-  if (words.length > 1) {
-    const bySize = [...words].sort((a, b) => b.length - a.length);
-    for (const w of bySize) {
-      for (const c of glossaryCandidates(w)) {
-        if (GLOSSARY[c]) return c;
-      }
-    }
-  }
-  return null;
-}
-
-function findSourceCard(node) {
-  const el = node && (node.nodeType === 1 ? node : node.parentElement);
-  return el && el.closest(".card, .study-row");
-}
-
-function findSourceRef(node) {
-  const card = findSourceCard(node);
-  if (!card) return null;
-  const label = card.querySelector(".label, .study-label");
-  const ref = card.querySelector(".verse-ref, .study-ref");
-  if (!label || !ref) return null;
-  return label.textContent + " " + ref.textContent;
-}
-
-const defineBar = document.getElementById("defineBar");
-const defineBtn = document.getElementById("defineFloatBtn");
-const commentaryBtn = document.getElementById("commentaryFloatBtn");
-let currentSelectionText = "";
-let currentSelectionSource = null;
-let currentSelectionCard = null;
-
-function isInsideLookupArea(node) {
-  const el = node && (node.nodeType === 1 ? node : node.parentElement);
-  return !!(el && el.closest(".verse-text, .study-explanation"));
-}
-
-function updateDefineButton() {
-  const sel = window.getSelection();
-  if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
-    defineBar.classList.remove("show");
-    return;
-  }
-  const text = sel.toString().trim();
-  if (!text || text.length > 60 || !isInsideLookupArea(sel.anchorNode)) {
-    defineBar.classList.remove("show");
-    return;
-  }
-  currentSelectionText = text;
-  currentSelectionSource = findSourceRef(sel.anchorNode);
-  currentSelectionCard = findSourceCard(sel.anchorNode);
-  defineBar.classList.add("show");
-}
-
-let selectionTimer;
-document.addEventListener("selectionchange", () => {
-  clearTimeout(selectionTimer);
-  selectionTimer = setTimeout(updateDefineButton, 150);
-});
-
-defineBar.addEventListener("mousedown", (e) => e.preventDefault());
-
-defineBtn.addEventListener("click", () => {
-  const text = currentSelectionText;
-  defineBar.classList.remove("show");
-  window.getSelection().removeAllRanges();
-  const key = findGlossaryMatch(text);
-  if (key) {
-    openWordModal(text, GLOSSARY[key]);
-  } else {
-    openWordModal(text, "No definition written yet for this word.");
-  }
-});
-
-commentaryBtn.addEventListener("click", () => {
-  const source = currentSelectionSource;
-  const card = currentSelectionCard;
-  defineBar.classList.remove("show");
-  window.getSelection().removeAllRanges();
-  const cat = card && card.dataset.cat;
-  const key = card && card.dataset.key;
-  const title = source || "Commentary";
-  const explanation = cat && key && EXPLANATIONS[cat] && EXPLANATIONS[cat][key];
-  openWordModal(title, explanation || "Explanation for this one is coming — verses are being written in order, day by day.");
-});
 
 document.getElementById("modalClose").addEventListener("click", closeModal);
 document.getElementById("fCancel").addEventListener("click", closeModal);
