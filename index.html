@@ -37,6 +37,7 @@
   font-display: swap;
 }
   :root {
+    --read-size: 1.1rem;
     --bg: #faf6ee;
     --card-bg: #ffffff;
     --ink: #2c2620;
@@ -290,7 +291,7 @@
   .verse-block:last-child { margin-bottom: 0; }
   .verse-text {
     font-family: "Lora", Georgia, "Times New Roman", serif;
-    font-size: 1.2rem;
+    font-size: var(--read-size);
     line-height: 1.6;
     white-space: pre-line;
     margin-bottom: 10px;
@@ -316,7 +317,7 @@
   .gloss-word:hover { color: var(--accent); }
   .word-definition {
     font-family: "Lora", Georgia, serif;
-    font-size: 0.95rem;
+    font-size: var(--read-size);
     line-height: 1.6;
   }
   .empty-state {
@@ -617,7 +618,7 @@
   }
   .study-explanation {
     font-family: "Lora", Georgia, "Times New Roman", serif;
-    font-size: 1.05rem;
+    font-size: var(--read-size);
     line-height: 1.6;
     white-space: pre-line;
   }
@@ -681,7 +682,7 @@
   }
   .search-result-snippet {
     font-family: "Lora", Georgia, serif;
-    font-size: 0.92rem;
+    font-size: var(--read-size);
     line-height: 1.5;
     color: var(--ink);
   }
